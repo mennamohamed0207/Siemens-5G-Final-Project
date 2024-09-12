@@ -11,6 +11,11 @@ Packet::Packet(string destAddress, string srcAddress, string ethernetType, strin
     this->CRC = CRC;
     this->IFG = IFG;
 }
+Packet::Packet()
+{
+    this->preamble = "FB555555555555";
+    this->SOP = "D5";
+}
 
 string Packet::getSOP()
 {

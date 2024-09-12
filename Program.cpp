@@ -22,9 +22,9 @@ void Program::setOutputFile(const std::string &outputFile)
     this->outputFile = outputFile;
 }
 
-void Program::setPackets(const std::string &packets)
+void Program::setPackets(Packet*p)
 {
-    this->packets = packets;
+    this->packets = p;
 }
 
 void Program::readConfig()
@@ -52,4 +52,11 @@ bool Program::fileExists(const std::string &fileName)
 {
     std::ifstream file(fileName);
     return file.is_open();
+}
+
+Program::Program(string configFile, string outputFile)
+{
+    setConfigurationFile(configFile);
+    
+    setOutputFile(outputFile);
 }

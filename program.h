@@ -2,20 +2,22 @@
 
 #include <string>
 #include <configurations.h>
+#include <Packet.h>
 
 class Program
 {
 public:
     void setConfigurationFile(const std::string &configurationFile);
     void setOutputFile(const std::string &outputFile);
-    void setPackets(const std::string &packets);
+    void setPackets(Packet*p);
     void readConfig();
     void writeFile();
     bool fileExists(const std::string &fileName);
+    Program(string configFile,string outputFile);
 
 private:
     std::string configurationFile;
     std::string outputFile;
-    std::string packets;
+    Packet* packets;
     configurations config;
 };
