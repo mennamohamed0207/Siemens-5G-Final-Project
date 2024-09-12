@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <configurations.cpp>
 using namespace std;
 
 class Program
@@ -9,26 +10,13 @@ private:
     string configurationFile;
     string outputFile;
     string packets;
+    configurations config;
 
 public:
-    void readFile()
+        void readConfig()
     {
-        std::ifstream file(configurationFile);
-        if (!file.is_open())
-        {
-            std::cerr << "Error: Could not open the file " << configurationFile << std::endl;
-            return;
-        }
-
-        std::string line;
-        while (std::getline(file, line))
-        {
-            std::cout << line << std::endl;
-        }
-
-        file.close();
+        config.readConfigurations(configurationFile);
     }
-
     void writeFile()
     {
         std::ofstream file(outputFile);
@@ -53,6 +41,7 @@ public:
         if (fileExists(configurationFile))
         {
             this->configurationFile = configurationFile;
+            this->readConfig();
         }
         else
         {
@@ -69,18 +58,3 @@ public:
         this->packets = packets;
     }
 };
-int main()
-{
-    Program program;
-    try{
-    program.setConfigurationFile("config.txt");
-    program.setOutputFile("output.txt");
-    program.setPackets("packets.txt");
-    program.readFile();
-    program.writeFile();
-    return 0;
-
-    }catch(const std::exception& e){
-        std::cerr << e.what() << '\n';
-    }
-}

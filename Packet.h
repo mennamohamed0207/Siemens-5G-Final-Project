@@ -11,8 +11,6 @@ private:
     string payload;
     string CRC;
     string IFG;
-
-
 public:
     Packet(string destAddress, string srcAddress, string ethernetType, string payload, string CRC, string IFG,string SOP="D5",string preamble="FB555555555555");
     string getPreamble();
