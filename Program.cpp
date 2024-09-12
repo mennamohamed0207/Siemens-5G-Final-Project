@@ -1,60 +1,46 @@
+#include "program.h"
 #include <iostream>
 #include <fstream>
-#include <string>
-#include <configurations.cpp>
-using namespace std;
+#include "configurations.cpp" // Include the configurations header
 
-class Program
-{
-private:
-    string configurationFile;
-    string outputFile;
-    string packets;
-    configurations config;
-
-public:
-        void readConfig()
-    {
-        config.readConfigurations(configurationFile);
-    }
-    void writeFile()
-    {
-        std::ofstream file(outputFile);
-        if (!file.is_open())
-        {
-            std::cerr << "Error: Could not open the file " << outputFile << std::endl;
-            return;
-        }
-
-        file << packets;
-
-        file.close();
+void Program::setConfigurationFile(const std::string& configurationFile) {
+    // Check if the file exists and throw an exception if it doesn't
+    if (!fileExists(configurationFile)) {
+        throw std::runtime_error("File not found");
     }
 
-    bool fileExists(const std::string &fileName)
-    {
-        std::ifstream file(fileName);
-        return file.is_open();
-    }
-    void setConfigurationFile(string configurationFile)
-    {
-        if (fileExists(configurationFile))
-        {
-            this->configurationFile = configurationFile;
-            this->readConfig();
-        }
-        else
-        {
-            throw std::runtime_error("File not found");
-        }
-    }
-    void setOutputFile(string outputFile)
-    {
+    this->configurationFile = configurationFile;
+    readConfig();
+}
 
-        this->outputFile = outputFile;
+void Program::setOutputFile(const std::string& outputFile) {
+    this->outputFile = outputFile;
+}
+
+void Program::setPackets(const std::string& packets) {
+    this->packets = packets;
+}
+
+void Program::readConfig() {
+    // Read the configuration file using the configurations class
+    config.readConfigurations(configurationFile);
+}
+
+void Program::writeFile() {
+    // Open the output file for writing
+    std::ofstream file(outputFile);
+    if (!file.is_open()) {
+        std::cerr << "Error: Could not open the file " << outputFile << std::endl;
+        return;
     }
-    void setPackets(string packets)
-    {
-        this->packets = packets;
-    }
-};
+
+    // Write the packets to the file
+    file << packets;
+
+    file.close();
+}
+
+bool Program::fileExists(const std::string& fileName) {
+    std::ifstream file(fileName);
+    return file.is_open();
+}
