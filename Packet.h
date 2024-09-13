@@ -1,4 +1,7 @@
 #include <iostream>
+#include <vector>
+#include <cstdint>
+#include <iomanip>
 using namespace std;
 class Packet
 {
@@ -11,6 +14,9 @@ private:
     string payload;
     string CRC;
     string IFG;
+    string calculateCRC(string packet);
+    uint32_t crc32(const std::vector<uint8_t> &data);
+
 public:
     Packet(string destAddress, string srcAddress, string ethernetType, string payload,string SOP="D5",string preamble="FB555555555555");
     Packet();

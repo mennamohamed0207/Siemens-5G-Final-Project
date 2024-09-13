@@ -10,11 +10,45 @@ Packet::Packet(string destAddress, string srcAddress, string ethernetType, strin
     this->payload = payload;
     this->CRC = CRC;
     this->IFG = IFG;
+    this->CRC = calculateCRC(this->preamble + this->SOP + this->destAddress + this->srcAddress + this->ethernetType + this->payload);
+    cout<<endl<<this->CRC<<endl;
 }
+
+uint32_t Packet::crc32(const std::vector<uint8_t> &data)
+{
+    uint32_t crc = 0xFFFFFFFF;
+    const uint32_t polynomial = 0xEDB88320; // Standard CRC32 polynomial
+
+    for (size_t i = 0; i < data.size(); ++i)
+    {
+        uint32_t byte = data[i];
+        crc ^= byte;
+        for (int j = 0; j < 8; ++j)
+        {
+            if (crc & 1)
+            {
+                crc = (crc >> 1) ^ polynomial;
+            }
+            else
+            {
+                crc >>= 1;
+            }
+        }
+    }
+
+    return crc ^ 0xFFFFFFFF;
+}
+string Packet::calculateCRC(string packet)
+{
+    std::vector<uint8_t> bytes(packet.begin(), packet.end());
+    return std::to_string(this->crc32(bytes));
+}
+
 Packet::Packet()
 {
     this->preamble = "FB555555555555";
     this->SOP = "D5";
+    this->CRC = calculateCRC(this->preamble + this->SOP + this->destAddress + this->srcAddress + this->ethernetType + this->payload);
 }
 
 string Packet::getSOP()
@@ -45,7 +79,7 @@ string Packet::getIFG()
 {
     return IFG;
 }
-string Packet::getPacket() 
+string Packet::getPacket()
 {
     return preamble + SOP + destAddress + srcAddress + ethernetType + payload + CRC + IFG;
 }
