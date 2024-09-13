@@ -5,7 +5,9 @@ int main()
 {
     try
     {
-        Program program("config.txt", "output.txt");
+        string configFile="../config.txt";
+        string outputFile="output.txt";
+        Program program(configFile, configFile);
         return 0;
     }
     catch (const std::exception &e)
