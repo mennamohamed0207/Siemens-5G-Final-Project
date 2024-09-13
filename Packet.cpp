@@ -1,6 +1,6 @@
 #include "Packet.h"
 
-Packet::Packet(string destAddress, string srcAddress, string ethernetType, string payload, string CRC, string IFG, string SOP, string preamble)
+Packet::Packet(string destAddress, string srcAddress, string ethernetType, string payload, string SOP, string preamble)
 {
     this->preamble = preamble;
     this->SOP = SOP;
@@ -44,6 +44,10 @@ string Packet::getCRC()
 string Packet::getIFG()
 {
     return IFG;
+}
+string Packet::getPacket() 
+{
+    return preamble + SOP + destAddress + srcAddress + ethernetType + payload + CRC + IFG;
 }
 void Packet::setPreamble(string preamble)
 {

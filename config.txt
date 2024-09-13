@@ -1,6 +1,6 @@
 EthLineRate             = 10
 EthCaptureSizeMs        = 20
-EthMinNumOfIFGsPerPacket= 30
+EthMinNumOfIFGsPerPacket= 3
 EthDestAddress          = 45
 EthSourceAddress        = 50
 EthMaxPacketSize        = 10
