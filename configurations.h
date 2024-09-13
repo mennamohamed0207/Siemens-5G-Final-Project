@@ -15,4 +15,7 @@ public:
     int EthBurstSize;
     int EthBurstPeriodicity_us;
     void readConfigurations(string configurationFile);
+private:
+int getNumberAfterEqual(const std::string& str) ;
+void printConfigurations();
 };

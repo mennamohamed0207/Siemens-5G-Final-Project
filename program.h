@@ -1,8 +1,8 @@
 
 
 #include <string>
-#include <configurations.h>
-#include <Packet.h>
+#include "configurations.cpp"
+#include "Packet.h"
 
 class Program
 {

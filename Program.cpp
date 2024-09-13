@@ -1,9 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <configurations.h>
 using namespace std;
-#include <Program.h>
+#include "Program.h"
 
 void Program::setConfigurationFile(const std::string &configurationFile)
 {
@@ -22,15 +21,14 @@ void Program::setOutputFile(const std::string &outputFile)
     this->outputFile = outputFile;
 }
 
-void Program::setPackets(Packet*p)
+void Program::setPackets(Packet *p)
 {
     this->packets = p;
 }
 
 void Program::readConfig()
 {
-
-    this->config.readConfigurations(configurationFile);
+config.readConfigurations(configurationFile);
 }
 
 void Program::writeFile()
@@ -57,6 +55,6 @@ bool Program::fileExists(const std::string &fileName)
 Program::Program(string configFile, string outputFile)
 {
     setConfigurationFile(configFile);
-    
+
     setOutputFile(outputFile);
 }

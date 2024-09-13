@@ -1,4 +1,4 @@
-#include <Packet.h>
+#include "Packet.h"
 
 Packet::Packet(string destAddress, string srcAddress, string ethernetType, string payload, string CRC, string IFG, string SOP, string preamble)
 {
