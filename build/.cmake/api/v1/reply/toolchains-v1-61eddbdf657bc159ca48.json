@@ -1,0 +1,138 @@
+{
+	"kind" : "toolchains",
+	"toolchains" : 
+	[
+		{
+			"compiler" : 
+			{
+				"id" : "GNU",
+				"implicit" : 
+				{
+					"includeDirectories" : 
+					[
+						"C:/Users/dell/Downloads/gcc-13.2.0-no-debug/lib/gcc/x86_64-w64-mingw32/13.2.0/include",
+						"C:/Users/dell/Downloads/gcc-13.2.0-no-debug/lib/gcc/x86_64-w64-mingw32/13.2.0/include-fixed",
+						"C:/Users/dell/Downloads/gcc-13.2.0-no-debug/x86_64-w64-mingw32/include"
+					],
+					"linkDirectories" : 
+					[
+						"C:/Users/dell/Downloads/gcc-13.2.0-no-debug/lib/gcc/x86_64-w64-mingw32/13.2.0",
+						"C:/Users/dell/Downloads/gcc-13.2.0-no-debug/lib/gcc",
+						"C:/Users/dell/Downloads/gcc-13.2.0-no-debug/x86_64-w64-mingw32/lib",
+						"C:/Users/dell/Downloads/gcc-13.2.0-no-debug/lib"
+					],
+					"linkFrameworkDirectories" : [],
+					"linkLibraries" : 
+					[
+						"mingw32",
+						"gcc",
+						"moldname",
+						"mingwex",
+						"kernel32",
+						"pthread",
+						"advapi32",
+						"shell32",
+						"user32",
+						"kernel32",
+						"mingw32",
+						"gcc",
+						"moldname",
+						"mingwex",
+						"kernel32"
+					]
+				},
+				"path" : "C:/Users/dell/Downloads/gcc-13.2.0-no-debug/bin/gcc.exe",
+				"version" : "13.2.0"
+			},
+			"language" : "C",
+			"sourceFileExtensions" : 
+			[
+				"c",
+				"m"
+			]
+		},
+		{
+			"compiler" : 
+			{
+				"id" : "GNU",
+				"implicit" : 
+				{
+					"includeDirectories" : 
+					[
+						"C:/Users/dell/Downloads/gcc-13.2.0-no-debug/lib/gcc/x86_64-w64-mingw32/13.2.0/include/c++",
+						"C:/Users/dell/Downloads/gcc-13.2.0-no-debug/lib/gcc/x86_64-w64-mingw32/13.2.0/include/c++/x86_64-w64-mingw32",
+						"C:/Users/dell/Downloads/gcc-13.2.0-no-debug/lib/gcc/x86_64-w64-mingw32/13.2.0/include/c++/backward",
+						"C:/Users/dell/Downloads/gcc-13.2.0-no-debug/lib/gcc/x86_64-w64-mingw32/13.2.0/include",
+						"C:/Users/dell/Downloads/gcc-13.2.0-no-debug/lib/gcc/x86_64-w64-mingw32/13.2.0/include-fixed",
+						"C:/Users/dell/Downloads/gcc-13.2.0-no-debug/x86_64-w64-mingw32/include"
+					],
+					"linkDirectories" : 
+					[
+						"C:/Users/dell/Downloads/gcc-13.2.0-no-debug/lib/gcc/x86_64-w64-mingw32/13.2.0",
+						"C:/Users/dell/Downloads/gcc-13.2.0-no-debug/lib/gcc",
+						"C:/Users/dell/Downloads/gcc-13.2.0-no-debug/x86_64-w64-mingw32/lib",
+						"C:/Users/dell/Downloads/gcc-13.2.0-no-debug/lib"
+					],
+					"linkFrameworkDirectories" : [],
+					"linkLibraries" : 
+					[
+						"stdc++",
+						"mingw32",
+						"gcc",
+						"moldname",
+						"mingwex",
+						"kernel32",
+						"pthread",
+						"advapi32",
+						"shell32",
+						"user32",
+						"kernel32",
+						"mingw32",
+						"gcc",
+						"moldname",
+						"mingwex",
+						"kernel32"
+					]
+				},
+				"path" : "C:/Users/dell/Downloads/gcc-13.2.0-no-debug/bin/g++.exe",
+				"version" : "13.2.0"
+			},
+			"language" : "CXX",
+			"sourceFileExtensions" : 
+			[
+				"C",
+				"M",
+				"c++",
+				"cc",
+				"cpp",
+				"cxx",
+				"mm",
+				"mpp",
+				"CPP",
+				"ixx",
+				"cppm",
+				"ccm",
+				"cxxm",
+				"c++m"
+			]
+		},
+		{
+			"compiler" : 
+			{
+				"implicit" : {},
+				"path" : "C:/Users/dell/Downloads/gcc-13.2.0-no-debug/bin/windres.exe"
+			},
+			"language" : "RC",
+			"sourceFileExtensions" : 
+			[
+				"rc",
+				"RC"
+			]
+		}
+	],
+	"version" : 
+	{
+		"major" : 1,
+		"minor" : 0
+	}
+}
