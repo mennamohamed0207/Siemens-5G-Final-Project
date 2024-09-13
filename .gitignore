@@ -1,4 +1,4 @@
-.exe
-./vscode/tasks.json
-./bin
-./build
+*.exe
+.vscode/
+bin/
+build/
