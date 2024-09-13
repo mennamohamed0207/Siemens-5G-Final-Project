@@ -23,6 +23,7 @@ uint32_t crc32(const std::vector<uint8_t>& data) {
 
 int main() {
     // Example packet data
+    
     std::vector<uint8_t> packet = {0x01, 0x02, 0x03, 0x04, 0x05}; // Replace with your packet data
 
     // Calculate CRC32

@@ -10,8 +10,8 @@ Packet::Packet(string destAddress, string srcAddress, string ethernetType, strin
     this->payload = payload;
     this->CRC = CRC;
     this->IFG = IFG;
-    this->CRC = calculateCRC(this->preamble + this->SOP + this->destAddress + this->srcAddress + this->ethernetType + this->payload);
-    cout<<endl<<this->CRC<<endl;
+    this->CRC =  calculateCRC(this->preamble + this->SOP + this->destAddress + this->srcAddress + this->ethernetType + this->payload);
+    std::cout << "CRC32: " << std::hex << this->CRC << std::endl;
 }
 
 uint32_t Packet::crc32(const std::vector<uint8_t> &data)
@@ -38,10 +38,15 @@ uint32_t Packet::crc32(const std::vector<uint8_t> &data)
 
     return crc ^ 0xFFFFFFFF;
 }
-string Packet::calculateCRC(string packet)
-{
+string Packet::calculateCRC(string packet) {
     std::vector<uint8_t> bytes(packet.begin(), packet.end());
-    return std::to_string(this->crc32(bytes));
+    uint32_t crcValue = this->crc32(bytes);
+
+    // Convert the 4-byte CRC to a hexadecimal string with 8 digits
+    std::stringstream ss;
+    ss << std::hex << std::setw(8) << std::setfill('0') << crcValue;
+    
+    return ss.str();  // Return as hex string
 }
 
 Packet::Packet()
