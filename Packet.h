@@ -3,6 +3,10 @@
 #include <cstdint>
 #include <iomanip>
 using namespace std;
+#ifndef PACKET_H
+#define PACKET_H
+
+
 class Packet
 {
 private:
@@ -38,3 +42,5 @@ public:
     void setCRC(string CRC);
     void setIFG(string IFG);
 };
+#endif 
+

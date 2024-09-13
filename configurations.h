@@ -2,6 +2,10 @@
 #include <fstream>
 #include <string>
 using namespace std;
+#ifndef CONFIGURATIONS_H
+#define CONFIGURATIONS_H
+
+
 class configurations
 {
 
@@ -19,3 +23,4 @@ private:
 int getNumberAfterEqual(const std::string& str) ;
 void printConfigurations();
 };
+#endif // CONFIGURATIONS_H

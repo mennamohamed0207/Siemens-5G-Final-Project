@@ -1,9 +1,12 @@
 
 
 #include <string>
-#include "configurations.cpp"
-#include "Packet.cpp"
+#include "configurations.h"
+#include "Packet.h"
 #include <vector>
+#ifndef PROGRAM_H
+#define PROGRAM_H
+
 
 class Program
 {
@@ -27,3 +30,4 @@ private:
     vector<Packet> packets;
     configurations config;
 };
+#endif // PROGRAM_H

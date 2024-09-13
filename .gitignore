@@ -1,4 +1,4 @@
-*.exe
 .vscode/
 bin/
 build/
+*.exe

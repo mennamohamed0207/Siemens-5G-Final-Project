@@ -1,24 +1,29 @@
-cmake_minimum_required(VERSION 3.0.0)   # Selects the minimum version of CMake required to run this file
-project(SiemensFinalProject VERSION 0.1.0)          # Here we select the project name and version
+# Define the minimum CMake version required
+cmake_minimum_required(VERSION 3.10)
 
-# Here we select C++17 with all the standards required and all compiler-specific extensions disabled
+# Define the C and C++ compilers explicitly
+set(CMAKE_C_COMPILER "C:\\Users\\dell\\Downloads\\gcc-13.2.0-no-debug\\bin\\gcc.exe")
+
+# Specify the compiler (optional, if needed to specify explicitly)
+set(CMAKE_CXX_COMPILER "C:\\Users\\dell\\Downloads\\gcc-13.2.0-no-debug\\bin\\g++.exe")
+# Define the project name
+project(EthernetSimulator)
+
+# Set the C++ standard to C++11 or C++17
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
 
-# A variable with all our source files that are common between executable targets (examples)
-set(COMMON_SOURCES
-        configurations.h
-        configurations.cpp
-        Packet.h
+# Add the executable (this assumes main.cpp is the entry point)
+add_executable(EthernetSimulator 
+        main.cpp 
+        Program.cpp 
+        configurations.cpp 
         Packet.cpp
+        Packet.h
         Program.h
-        Program.cpp
-
+        configurations.h
+        
 )
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${PROJECT_SOURCE_DIR}/bin)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${PROJECT_SOURCE_DIR}/bin)
 
-add_executable(SiemensFinalProject main.cpp  ${COMMON_SOURCES} )
-target_link_libraries(SiemensFinalProject)
+# Add any additional compiler flags if needed (optional)
+# Example: Enable all warnings
+target_compile_options(EthernetSimulator PRIVATE -Wall)
