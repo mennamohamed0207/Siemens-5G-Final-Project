@@ -1,3 +1,0 @@
-E:/Summer2024/SiemensFinalProject/build/CMakeFiles/SiemensFinalProject.dir
-E:/Summer2024/SiemensFinalProject/build/CMakeFiles/edit_cache.dir
-E:/Summer2024/SiemensFinalProject/build/CMakeFiles/rebuild_cache.dir
