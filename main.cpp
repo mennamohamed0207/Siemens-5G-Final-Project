@@ -6,7 +6,7 @@ int main( int argc, char *argv[] )
     try
     { 
         string configFile="../config.txt";
-        string outputFile="output.txt";
+        string outputFile="../output.txt";
         // cout<<"Enter path of config file : ";
         // cin>>configFile;
         // cout<<"Enter path of output file : ";
