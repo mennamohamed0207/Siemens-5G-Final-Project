@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cmath>
 using namespace std;
 #include "Program.h"
 
@@ -9,6 +10,7 @@ void Program::generatePackets()
     int generationTime = config.EthCaptureSizeMs;
     int burstSize = config.EthBurstSize;
     int burstPeriodicity = config.EthBurstPeriodicity_us;
+    int numberOfPackets = calculateNumberOfPackets();
     for (int i = 0; i < generationTime; i += burstPeriodicity)
     {
         for (int j = 0; j < burstSize; j++)
@@ -17,8 +19,8 @@ void Program::generatePackets()
             string srcAddress = (config.EthSourceAddress);
             string ethernetType = "0800";
             string payload = "";
-            int payloadSize = config.EthMaxPacketSize-(7+1+6+6+2+4+config.EthMinNumOfIFGsPerPacket);
-             while (payloadSize != 0)
+            int payloadSize = config.EthMaxPacketSize - (7 + 1 + 6 + 6 + 2 + 4 + config.EthMinNumOfIFGsPerPacket);
+            while (payloadSize != 0)
             {
                 payload += "00";
                 payloadSize--;
@@ -41,6 +43,33 @@ void Program::generatePackets()
             packets.push_back(p);
         }
     }
+}
+
+int Program::calculateNumberOfPackets()
+{
+    int generationTime = config.EthCaptureSizeMs;
+    int lineRate = config.EthLineRate;
+    long long totalDate = (generationTime * lineRate * pow(10, 6));
+    int numberOfPossiblePackets = totalDate / config.EthMaxPacketSize;
+    int numberOfPackets =0;
+
+    // Handle bursts if enabled
+    if (config.EthBurstSize > 0)
+    {
+        // Number of Bursts within generation time
+        float numberOfBursts = config.EthCaptureSizeMs / config.EthBurstPeriodicity_us;
+        numberOfPackets+=(int)numberOfBursts * config.EthBurstSize;
+
+    }
+    else
+    {
+        cout << "No bursts are sent in this configuration" << endl;
+        return -1;
+    }
+    // return numberOfPackets;
+}
+void Program::handleBursts(int numberOfPackets)
+{
 }
 bool Program::isAligned(int packetSize)
 {

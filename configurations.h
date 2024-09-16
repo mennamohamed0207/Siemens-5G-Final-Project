@@ -10,6 +10,7 @@ class configurations
 {
 
 public:
+    configurations();
     int EthLineRate;
     int EthCaptureSizeMs;
     int EthMinNumOfIFGsPerPacket;

@@ -1,5 +1,16 @@
 #include "configurations.h"
 
+configurations::configurations()
+{
+    EthLineRate = 0;
+    EthCaptureSizeMs = 0;
+    EthMinNumOfIFGsPerPacket = 0;
+    EthDestAddress = "";
+    EthSourceAddress = "";
+    EthMaxPacketSize = 0;
+    EthBurstSize = 0;
+    EthBurstPeriodicity_us = 0;
+}
 void configurations::printConfigurations()
 {
     std::cout << "EthLineRate: " << EthLineRate << std::endl;
