@@ -18,7 +18,7 @@ public:
     void readConfig();
     // void writeFile();
     bool fileExists(const std::string &fileName);
-    void generatePackets();
+    void generatePackets(const std::string &outputFile);
     void addIFGs(Packet &packet);
     bool isAligned(int packetSize);
     void dumpPacketsToFile(const std::string &outputFile);
@@ -30,7 +30,7 @@ private:
     std::string outputFile;
     vector<Packet> packets;
     configurations config;
-    int calculateNumberOfPackets();
-    void handleBursts(int numberOfPackets);
+    long long calculateNumberOfBursts();
+    long long handleIFGs();
 };
 #endif // PROGRAM_H

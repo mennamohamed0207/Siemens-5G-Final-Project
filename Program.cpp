@@ -5,12 +5,17 @@
 using namespace std;
 #include "Program.h"
 
-void Program::generatePackets()
+void Program::generatePackets(const std::string &outputFile)
 {
-    int numberOfPackets = calculateNumberOfPackets();
-    for (int i = 0; i < numberOfPackets; i++)
+    std::ofstream out(outputFile);
+    long long numberOfBursts = calculateNumberOfBursts();
+
+    long long IFGs = handleIFGs();
+    for (int i = 0; i < numberOfBursts; i++)
     {
-        
+
+        for (int j = 0; j < config.EthBurstSize; j++)
+        {
             string destAddress = (config.EthDestAddress);
             string srcAddress = (config.EthSourceAddress);
             string ethernetType = "0800";
@@ -37,35 +42,45 @@ void Program::generatePackets()
             }
 
             packets.push_back(p);
-        
+
+            out << p.getPacket() << endl;
+        }
+        int count = IFGs;
+        while (count != 0)
+        {
+            out << "07";
+            count--;
+        }
+        out<<endl;
     }
+    out.close();
 }
 
-int Program::calculateNumberOfPackets()
+long long Program::calculateNumberOfBursts()
 {
-    // int generationTime = config.EthCaptureSizeMs;
-    // int lineRate = config.EthLineRate;
-    // long long totalDate = (generationTime * lineRate * pow(10, 6));
-    // int numberOfPossiblePackets = totalDate / config.EthMaxPacketSize;
-    int numberOfPackets =0;
+    long long numberOfBursts = 0;
 
     // Handle bursts if enabled
     if (config.EthBurstSize > 0)
     {
         // Number of Bursts within generation time
-        float numberOfBursts = config.EthCaptureSizeMs / config.EthBurstPeriodicity_us;
-        numberOfPackets+=(int)numberOfBursts * config.EthBurstSize;
-
+        numberOfBursts = config.EthCaptureSizeMs / config.EthBurstPeriodicity_us;
+        return numberOfBursts;
     }
     else
     {
         cout << "No bursts are sent in this configuration" << endl;
         return -1;
     }
-    return numberOfPackets;
 }
-void Program::handleBursts(int numberOfPackets)
+long long Program::handleIFGs()
 {
+    long long timeOfBurst = (config.EthMaxPacketSize * config.EthBurstSize * 8) / config.EthLineRate;
+    long long timePerIFG = (8 / config.EthLineRate) + 1;
+    long long totalTimeOfIFGsInPeriod = config.EthBurstPeriodicity_us  - timeOfBurst/1000;
+    long long numberOfIFGsInPeriod = totalTimeOfIFGsInPeriod / timePerIFG;
+    cout << "Number of IFGs: " << "" << endl;
+    return numberOfIFGsInPeriod;
 }
 bool Program::isAligned(int packetSize)
 {
@@ -119,23 +134,6 @@ void Program::readConfig()
     config.readConfigurations(configurationFile);
 }
 
-// void Program::writeFile()
-// {
-
-//     std::ofstream file(outputFile);
-//     if (!file.is_open())
-//     {
-//         std::cerr << "Error: Could not open the file " << outputFile << std::endl;
-//         return;
-//     }
-//     for (int i = 0; i < packets.size(); i++)
-//     {
-//         file << packets[i].getPacket() << std::endl;
-//     }
-
-//     file.close();
-// }
-
 bool Program::fileExists(const std::string &fileName)
 {
     std::ifstream file(fileName);
@@ -145,6 +143,5 @@ bool Program::fileExists(const std::string &fileName)
 Program::Program(string configFile, string outputFile)
 {
     setConfigurationFile(configFile);
-    generatePackets();
-    dumpPacketsToFile(outputFile);
+    generatePackets(outputFile);
 }
