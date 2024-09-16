@@ -7,14 +7,10 @@ using namespace std;
 
 void Program::generatePackets()
 {
-    int generationTime = config.EthCaptureSizeMs;
-    int burstSize = config.EthBurstSize;
-    int burstPeriodicity = config.EthBurstPeriodicity_us;
     int numberOfPackets = calculateNumberOfPackets();
-    for (int i = 0; i < generationTime; i += burstPeriodicity)
+    for (int i = 0; i < numberOfPackets; i++)
     {
-        for (int j = 0; j < burstSize; j++)
-        {
+        
             string destAddress = (config.EthDestAddress);
             string srcAddress = (config.EthSourceAddress);
             string ethernetType = "0800";
@@ -41,16 +37,16 @@ void Program::generatePackets()
             }
 
             packets.push_back(p);
-        }
+        
     }
 }
 
 int Program::calculateNumberOfPackets()
 {
-    int generationTime = config.EthCaptureSizeMs;
-    int lineRate = config.EthLineRate;
-    long long totalDate = (generationTime * lineRate * pow(10, 6));
-    int numberOfPossiblePackets = totalDate / config.EthMaxPacketSize;
+    // int generationTime = config.EthCaptureSizeMs;
+    // int lineRate = config.EthLineRate;
+    // long long totalDate = (generationTime * lineRate * pow(10, 6));
+    // int numberOfPossiblePackets = totalDate / config.EthMaxPacketSize;
     int numberOfPackets =0;
 
     // Handle bursts if enabled
@@ -66,7 +62,7 @@ int Program::calculateNumberOfPackets()
         cout << "No bursts are sent in this configuration" << endl;
         return -1;
     }
-    // return numberOfPackets;
+    return numberOfPackets;
 }
 void Program::handleBursts(int numberOfPackets)
 {
