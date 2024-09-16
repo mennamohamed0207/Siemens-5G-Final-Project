@@ -1,3 +1,8 @@
-FB555555555555D5455008000000cd6018e6070707
-FB555555555555D5455008000000cd6018e6070707
-FB555555555555D5455008000000cd6018e6070707
+Eth.LineRate = 10
+Eth.CaptureSizeMs = 10 
+Eth.MinNumOfIFGsPerPacket = 12 
+Eth.DestAddress =  0x010101010101
+Eth.SourceAddress = 0x333333333333
+Eth.MaxPacketSize  = 1500       
+Eth.BurstSize = 3				
+Eth.BurstPeriodicity_us = 100   

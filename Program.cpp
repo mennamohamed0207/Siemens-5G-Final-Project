@@ -13,10 +13,16 @@ void Program::generatePackets()
     {
         for (int j = 0; j < burstSize; j++)
         {
-            string destAddress = to_string(config.EthDestAddress);
-            string srcAddress = to_string(config.EthSourceAddress);
+            string destAddress = (config.EthDestAddress);
+            string srcAddress = (config.EthSourceAddress);
             string ethernetType = "0800";
-            string payload = "0000";
+            string payload = "";
+            int payloadSize = config.EthMaxPacketSize-(7+1+6+6+2+4+config.EthMinNumOfIFGsPerPacket);
+             while (payloadSize != 0)
+            {
+                payload += "00";
+                payloadSize--;
+            }
             Packet p(destAddress, srcAddress, "0800", payload); // EtherType 0x0800 for IPv4
 
             int IFGs = config.EthMinNumOfIFGsPerPacket;

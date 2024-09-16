@@ -13,8 +13,8 @@ public:
     int EthLineRate;
     int EthCaptureSizeMs;
     int EthMinNumOfIFGsPerPacket;
-    int EthDestAddress;
-    int EthSourceAddress;
+    string EthDestAddress;
+    string EthSourceAddress;
     int EthMaxPacketSize;
     int EthBurstSize;
     int EthBurstPeriodicity_us;
@@ -22,5 +22,6 @@ public:
 private:
 int getNumberAfterEqual(const std::string& str) ;
 void printConfigurations();
+string getAddress(const std::string &str);
 };
 #endif // CONFIGURATIONS_H

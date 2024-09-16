@@ -3,7 +3,7 @@
 void configurations::printConfigurations()
 {
     std::cout << "EthLineRate: " << EthLineRate << std::endl;
-    std::cout << "EthCaptureSizeMs: " << EthCaptureSizeMs << std::endl; 
+    std::cout << "EthCaptureSizeMs: " << EthCaptureSizeMs << std::endl;
     std::cout << "EthMinNumOfIFGsPerPacket: " << EthMinNumOfIFGsPerPacket << std::endl;
     std::cout << "EthDestAddress: " << EthDestAddress << std::endl;
     std::cout << "EthSourceAddress: " << EthSourceAddress << std::endl;
@@ -25,6 +25,26 @@ int configurations::getNumberAfterEqual(const std::string &str)
         return -1;
     }
 }
+string configurations::getAddress(const std::string &str)
+{
+    size_t pos = str.find('=');
+    if (pos != std::string::npos)
+    {
+        size_t address = str.find('x');
+        if (address != std::string::npos)
+        {
+
+            std::string numberStr = str.substr(address + 1);
+            return numberStr;
+        }
+        return "";
+    }
+    else
+    {
+        std::cerr << "Error: '=' not found in the string!" << std::endl;
+        return "";
+    }
+}
 void configurations::readConfigurations(string configurationFile)
 {
     std::ifstream file(configurationFile);
@@ -37,40 +57,40 @@ void configurations::readConfigurations(string configurationFile)
     std::string line;
     while (std::getline(file, line))
     {
-        if (line.find("EthLineRate") != std::string::npos)
+        if (line.find("Eth.LineRate") != std::string::npos)
         {
             EthLineRate = getNumberAfterEqual(line);
         }
-        else if (line.find("EthCaptureSizeMs") != std::string::npos)
+        else if (line.find("Eth.CaptureSizeMs") != std::string::npos)
         {
             EthCaptureSizeMs = getNumberAfterEqual(line);
         }
-        else if (line.find("EthMinNumOfIFGsPerPacket") != std::string::npos)
+        else if (line.find("Eth.MinNumOfIFGsPerPacket") != std::string::npos)
         {
             EthMinNumOfIFGsPerPacket = getNumberAfterEqual(line);
         }
-        else if (line.find("EthDestAddress") != std::string::npos)
+        else if (line.find("Eth.DestAddress") != std::string::npos)
         {
-            EthDestAddress = getNumberAfterEqual(line);
+            EthDestAddress = getAddress(line);
         }
-        else if (line.find("EthSourceAddress") != std::string::npos)
+        else if (line.find("Eth.SourceAddress") != std::string::npos)
         {
-            EthSourceAddress = getNumberAfterEqual(line);
+            EthSourceAddress = getAddress(line);
         }
-        else if (line.find("EthMaxPacketSize") != std::string::npos)
+        else if (line.find("Eth.MaxPacketSize") != std::string::npos)
         {
             EthMaxPacketSize = getNumberAfterEqual(line);
         }
-        else if (line.find("EthBurstSize") != std::string::npos)
+        else if (line.find("Eth.BurstSize") != std::string::npos)
         {
             EthBurstSize = getNumberAfterEqual(line);
         }
-        else if (line.find("EthBurstPeriodicity_us") != std::string::npos)
+        else if (line.find("Eth.BurstPeriodicity_us") != std::string::npos)
         {
             EthBurstPeriodicity_us = getNumberAfterEqual(line);
         }
     }
-        printConfigurations();
+    printConfigurations();
 
     file.close();
 }
