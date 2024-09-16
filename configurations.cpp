@@ -64,6 +64,8 @@ void configurations::readConfigurations(string configurationFile)
         else if (line.find("Eth.CaptureSizeMs") != std::string::npos)
         {
             EthCaptureSizeMs = getNumberAfterEqual(line);
+            //To convert from ms to us
+            EthCaptureSizeMs=EthCaptureSizeMs*1000; 
         }
         else if (line.find("Eth.MinNumOfIFGsPerPacket") != std::string::npos)
         {
