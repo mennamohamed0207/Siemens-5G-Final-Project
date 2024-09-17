@@ -51,7 +51,7 @@ void Program::generatePackets(const std::string &outputFile)
             out << "07";
             count--;
         }
-        out<<endl;
+        out << endl;
     }
     out.close();
 }
@@ -76,10 +76,9 @@ long long Program::calculateNumberOfBursts()
 long long Program::handleIFGs()
 {
     long long timeOfBurst = (config.EthMaxPacketSize * config.EthBurstSize * 8) / config.EthLineRate;
-    long long timePerIFG = (8 / config.EthLineRate) + 1;
-    long long totalTimeOfIFGsInPeriod = config.EthBurstPeriodicity_us  - timeOfBurst/1000;
+    long long timePerIFG = (8 / config.EthLineRate) + 1; // Because of precision in 8/lineRate it will be zero so I add 1 as I ceil it
+    long long totalTimeOfIFGsInPeriod = config.EthBurstPeriodicity_us - timeOfBurst / 1000;
     long long numberOfIFGsInPeriod = totalTimeOfIFGsInPeriod / timePerIFG;
-    cout << "Number of IFGs: " << "" << endl;
     return numberOfIFGsInPeriod;
 }
 bool Program::isAligned(int packetSize)

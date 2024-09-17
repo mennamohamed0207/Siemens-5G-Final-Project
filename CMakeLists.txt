@@ -4,15 +4,15 @@ cmake_minimum_required(VERSION 3.10)
 # Define the C and C++ compilers explicitly
 set(CMAKE_C_COMPILER "C:\\Users\\dell\\Downloads\\gcc-13.2.0-no-debug\\bin\\gcc.exe")
 
-# Specify the compiler (optional, if needed to specify explicitly)
+# Specify the compiler 
 set(CMAKE_CXX_COMPILER "C:\\Users\\dell\\Downloads\\gcc-13.2.0-no-debug\\bin\\g++.exe")
 # Define the project name
 project(EthernetSimulator)
 
-# Set the C++ standard to C++11 or C++17
+# Set the C++ standard 
 set(CMAKE_CXX_STANDARD 17)
 
-# Add the executable (this assumes main.cpp is the entry point)
+# Add the executable 
 add_executable(EthernetSimulator 
         main.cpp 
         Program.cpp 
@@ -24,6 +24,5 @@ add_executable(EthernetSimulator
         
 )
 
-# Add any additional compiler flags if needed (optional)
-# Example: Enable all warnings
+
 target_compile_options(EthernetSimulator PRIVATE -Wall)
