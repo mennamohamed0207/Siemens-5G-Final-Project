@@ -103,7 +103,7 @@ void configurations::readConfigurations(string configurationFile)
             EthBurstPeriodicity_us = getNumberAfterEqual(line);
         }
     }
-    printConfigurations();
+    // printConfigurations();
 
     file.close();
 }

@@ -10,7 +10,7 @@ using namespace std;
 class Parser
 {
 public:
-    Parser(std::string configurationFile, std::string outputFile);
+    Parser( configurations configurationFile, std::string outputFile);
     vector<Packet> output;
     string IFGOutput;
     void parse(string inputFile);

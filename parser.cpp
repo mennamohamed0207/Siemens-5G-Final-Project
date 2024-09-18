@@ -1,15 +1,15 @@
 #include "parser.h"
 #include <fstream> // Required for file I/O (ifstream, ofstream)
 
-Parser::Parser(std::string configurationFile, std::string outputFile)
+Parser::Parser(configurations configurationFile, std::string outputFile)
 {
-    this->config.readConfigurations(configurationFile);
+    this->config=configurationFile;
     parse(outputFile);
 }
 
 void Parser::parse(string input)
 {
-
+    // this->config.printConfigurations();
     std::ifstream file(input);
     std::ofstream out(input + ".json");
     if (!file.is_open())

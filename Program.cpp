@@ -144,3 +144,7 @@ Program::Program(string configFile, string outputFile)
     setConfigurationFile(configFile);
     generatePackets(outputFile);
 }
+configurations Program::getConfig()
+{
+    return this->config;
+}

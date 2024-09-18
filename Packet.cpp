@@ -11,7 +11,7 @@ Packet::Packet(string destAddress, string srcAddress, string ethernetType, strin
     this->CRC = CRC;
     this->IFG = IFG;
     this->CRC =  calculateCRC(this->preamble + this->SOP + this->destAddress + this->srcAddress + this->ethernetType + this->payload);
-    std::cout << "CRC32: " << std::hex << this->CRC << std::endl;
+    // std::cout << "CRC32: " << std::hex << this->CRC << std::endl;
 }
 
 uint32_t Packet::crc32(const std::vector<uint8_t> &data)

@@ -22,6 +22,7 @@ public:
     void addIFGs(Packet &packet);
     bool isAligned(int packetSize);
     void dumpPacketsToFile(const std::string &outputFile);
+    configurations getConfig();
 
 
 
